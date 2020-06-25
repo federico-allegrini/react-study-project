@@ -30,10 +30,19 @@ class App extends Component {
   };
 
   render() {
+    const style = {
+      bacgroundColor: "white",
+      font: "inherit",
+      border: "2px solid #eee",
+      padding: "8px",
+      cursor: "pointer",
+    };
+
     return (
       <div className="App">
         <h1>React Posts!</h1>
         <button
+          style={style}
           onClick={() =>
             this.updatePostHandler(
               "Post Button MOD! [Arrow Function - Not recommended]"

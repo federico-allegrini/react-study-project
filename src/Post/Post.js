@@ -1,6 +1,7 @@
 import React from "react";
+import "./Post.css";
 const post = (props) => (
-  <div>
+  <div className="Post">
     <h2 onClick={props.click}>{props.title}</h2>
     <p>{props.content}</p>
     <p>
