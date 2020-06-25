@@ -20,6 +20,15 @@ class App extends Component {
     });
   };
 
+  titleChangedHandler = (event) => {
+    this.setState({
+      posts: [
+        { title: "Post 1", content: "This is Post 1" },
+        { title: event.target.value, content: "This is Post 2" },
+      ],
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -44,6 +53,7 @@ class App extends Component {
         <Post
           title={this.state.posts[1].title}
           content={this.state.posts[1].content}
+          changed={this.titleChangedHandler}
         >
           {new Date().toLocaleDateString()}
         </Post>

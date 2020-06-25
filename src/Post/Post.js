@@ -6,6 +6,7 @@ const post = (props) => (
     <p>
       <i>{props.children}</i>
     </p>
+    <input onChange={props.changed} value={props.title}></input>
   </div>
 );
 export default post;
