@@ -9,6 +9,7 @@ class App extends Component {
       { title: "Post 2", content: "This is Post 2" },
     ],
     otherState: "Other",
+    postsVisibility: false,
   };
 
   updatePostHandler = (newTitle) => {
@@ -29,6 +30,11 @@ class App extends Component {
     });
   };
 
+  togglePostHandler = () => {
+    const isVisible = this.state.postsVisibility;
+    this.setState({ postsVisibility: !isVisible });
+  };
+
   render() {
     const style = {
       bacgroundColor: "white",
@@ -38,34 +44,36 @@ class App extends Component {
       cursor: "pointer",
     };
 
+    let posts = null;
+    if (this.state.postsVisibility) {
+      posts = (
+        <div>
+          <Post
+            title={this.state.posts[0].title}
+            content={this.state.posts[0].content}
+            click={this.updatePostHandler.bind(
+              this,
+              "Post Paragraph Modified... [BIND - Best way]"
+            )}
+          />
+          <Post
+            title={this.state.posts[1].title}
+            content={this.state.posts[1].content}
+            changed={this.titleChangedHandler}
+          >
+            {new Date().toLocaleDateString()}
+          </Post>
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>React Posts!</h1>
-        <button
-          style={style}
-          onClick={() =>
-            this.updatePostHandler(
-              "Post Button MOD! [Arrow Function - Not recommended]"
-            )
-          }
-        >
-          Change Post
+        <button style={style} onClick={this.togglePostHandler}>
+          Toggle Posts
         </button>
-        <Post
-          title={this.state.posts[0].title}
-          content={this.state.posts[0].content}
-          click={this.updatePostHandler.bind(
-            this,
-            "Post Paragraph Modified... [BIND - Best way]"
-          )}
-        />
-        <Post
-          title={this.state.posts[1].title}
-          content={this.state.posts[1].content}
-          changed={this.titleChangedHandler}
-        >
-          {new Date().toLocaleDateString()}
-        </Post>
+        {posts}
       </div>
     );
   }
