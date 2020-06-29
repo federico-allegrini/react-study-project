@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import classes from "./App.module.css";
 import Post from "./Post/Post";
 
 class App extends Component {
@@ -38,15 +38,7 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "#2e7d32",
-      font: "inherit",
-      border: "2px solid #eee",
-      padding: "8px",
-      cursor: "pointer",
-      color: "white",
-    };
-
+    let btnClass = "";
     let posts = null;
     if (this.state.postsVisibility) {
       posts = (
@@ -66,22 +58,22 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = "#c62828";
+      btnClass = classes.Red;
     }
 
-    let classes = [];
+    let assignedClasses = [];
     if (this.state.posts.length <= 2) {
-      classes.push("red");
+      assignedClasses.push(classes.red);
     }
     if (this.state.posts.length <= 1) {
-      classes.push("bold");
+      assignedClasses.push(classes.bold);
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>React Posts!</h1>
-        <p className={classes.join(" ")}>List of posts.</p>
-        <button style={style} onClick={this.togglePostHandler}>
+        <p className={assignedClasses.join(" ")}>List of posts.</p>
+        <button className={btnClass} onClick={this.togglePostHandler}>
           Toggle Posts
         </button>
         {posts}

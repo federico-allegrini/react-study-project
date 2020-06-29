@@ -1,8 +1,8 @@
 import React from "react";
-import "./Post.css";
+import classes from "./Post.module.css";
 const post = (props) => {
   return (
-    <div className="Post">
+    <div className={classes.Post}>
       <h2 onClick={props.click}>{props.title}</h2>
       <p>{props.content}</p>
       <p>
