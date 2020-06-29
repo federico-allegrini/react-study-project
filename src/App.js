@@ -1,21 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import "./App.css";
 import Post from "./Post/Post";
-
-const StyledButton = styled.button`
-  background-color: ${(props) => (props.alt ? "#2e7d32" : "#c62828")};
-  font: inherit;
-  border: 2px solid #eee;
-  padding: 8px;
-  cursor: pointer;
-  color: white;
-
-  &:hover {
-    background-color: ${(props) => (props.alt ? "#81c784" : "#e57373")};
-    color: #222222;
-  }
-`;
 
 class App extends Component {
   state = {
@@ -53,6 +38,15 @@ class App extends Component {
   };
 
   render() {
+    const style = {
+      backgroundColor: "#2e7d32",
+      font: "inherit",
+      border: "2px solid #eee",
+      padding: "8px",
+      cursor: "pointer",
+      color: "white",
+    };
+
     let posts = null;
     if (this.state.postsVisibility) {
       posts = (
@@ -72,6 +66,7 @@ class App extends Component {
           })}
         </div>
       );
+      style.backgroundColor = "#c62828";
     }
 
     let classes = [];
@@ -86,12 +81,9 @@ class App extends Component {
       <div className="App">
         <h1>React Posts!</h1>
         <p className={classes.join(" ")}>List of posts.</p>
-        <StyledButton
-          alt={this.state.postsVisibility}
-          onClick={this.togglePostHandler}
-        >
+        <button style={style} onClick={this.togglePostHandler}>
           Toggle Posts
-        </StyledButton>
+        </button>
         {posts}
       </div>
     );
