@@ -7,6 +7,7 @@ class App extends Component {
     posts: [
       { id: "a1", title: "Post 1", content: "This is Post 1" },
       { id: "a2", title: "Post 2", content: "This is Post 2" },
+      { id: "a3", title: "Post 3", content: "This is Post 3" },
     ],
     otherState: "Other",
     postsVisibility: false,
@@ -38,11 +39,12 @@ class App extends Component {
 
   render() {
     const style = {
-      bacgroundColor: "white",
+      backgroundColor: "#2e7d32",
       font: "inherit",
       border: "2px solid #eee",
       padding: "8px",
       cursor: "pointer",
+      color: "white",
     };
 
     let posts = null;
@@ -64,11 +66,21 @@ class App extends Component {
           })}
         </div>
       );
+      style.backgroundColor = "#c62828";
+    }
+
+    let classes = [];
+    if (this.state.posts.length <= 2) {
+      classes.push("red");
+    }
+    if (this.state.posts.length <= 1) {
+      classes.push("bold");
     }
 
     return (
       <div className="App">
         <h1>React Posts!</h1>
+        <p className={classes.join(" ")}>List of posts.</p>
         <button style={style} onClick={this.togglePostHandler}>
           Toggle Posts
         </button>
