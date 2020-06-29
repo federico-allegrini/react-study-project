@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Radium, { StyleRoot } from "radium";
 import "./App.css";
 import Post from "./Post/Post";
 
@@ -46,10 +45,6 @@ class App extends Component {
       padding: "8px",
       cursor: "pointer",
       color: "white",
-      ":hover": {
-        backgroundColor: "#81c784",
-        color: "#222222",
-      },
     };
 
     let posts = null;
@@ -72,10 +67,6 @@ class App extends Component {
         </div>
       );
       style.backgroundColor = "#c62828";
-      style[":hover"] = {
-        backgroundColor: "#e57373",
-        color: "#222222",
-      };
     }
 
     let classes = [];
@@ -87,18 +78,16 @@ class App extends Component {
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h1>React Posts!</h1>
-          <p className={classes.join(" ")}>List of posts.</p>
-          <button style={style} onClick={this.togglePostHandler}>
-            Toggle Posts
-          </button>
-          {posts}
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1>React Posts!</h1>
+        <p className={classes.join(" ")}>List of posts.</p>
+        <button style={style} onClick={this.togglePostHandler}>
+          Toggle Posts
+        </button>
+        {posts}
+      </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;

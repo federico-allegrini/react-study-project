@@ -1,12 +1,6 @@
 import React from "react";
-import Radium from "radium";
 import "./Post.css";
 const post = (props) => {
-  const style = {
-    "@media (min-width: 500px)": {
-      width: "450px",
-    },
-  };
   return (
     <div className="Post" style={style}>
       <h2 onClick={props.click}>{props.title}</h2>
@@ -18,4 +12,4 @@ const post = (props) => {
     </div>
   );
 };
-export default Radium(post);
+export default post;
