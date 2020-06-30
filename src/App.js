@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./App.module.css";
 import Post from "./Post/Post";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 class App extends Component {
   state = {
@@ -45,15 +46,16 @@ class App extends Component {
         <div>
           {this.state.posts.map((post, index) => {
             return (
-              <Post
-                title={post.title}
-                content={post.content}
-                click={() => this.deletePostHandler(index)}
-                changed={(event) => this.titleChangedHandler(event, post.id)}
-                key={post.id}
-              >
-                {new Date().toLocaleDateString()}
-              </Post>
+              <ErrorBoundary key={post.id}>
+                <Post
+                  title={post.title}
+                  content={post.content}
+                  click={() => this.deletePostHandler(index)}
+                  changed={(event) => this.titleChangedHandler(event, post.id)}
+                >
+                  {new Date().toLocaleDateString()}
+                </Post>
+              </ErrorBoundary>
             );
           })}
         </div>
