@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./App.module.css";
-import Post from "./Post/Post";
+import Posts from "../components/Posts/Posts";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -38,44 +39,26 @@ class App extends Component {
   };
 
   render() {
-    let btnClass = "";
     let posts = null;
     if (this.state.postsVisibility) {
       posts = (
         <div>
-          {this.state.posts.map((post, index) => {
-            return (
-              <Post
-                title={post.title}
-                content={post.content}
-                click={() => this.deletePostHandler(index)}
-                changed={(event) => this.titleChangedHandler(event, post.id)}
-                key={post.id}
-              >
-                {new Date().toLocaleDateString()}
-              </Post>
-            );
-          })}
+          <Posts
+            posts={this.state.posts}
+            clicked={this.deletePostHandler}
+            changed={this.titleChangedHandler}
+          />
         </div>
       );
-      btnClass = classes.Red;
-    }
-
-    let assignedClasses = [];
-    if (this.state.posts.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if (this.state.posts.length <= 1) {
-      assignedClasses.push(classes.bold);
     }
 
     return (
       <div className={classes.App}>
-        <h1>React Posts!</h1>
-        <p className={assignedClasses.join(" ")}>List of posts.</p>
-        <button className={btnClass} onClick={this.togglePostHandler}>
-          Toggle Posts
-        </button>
+        <Cockpit
+          posts={this.state.posts}
+          postsVisibility={this.state.postsVisibility}
+          clicked={this.togglePostHandler}
+        />
         {posts}
       </div>
     );
