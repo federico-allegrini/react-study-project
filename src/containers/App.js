@@ -4,6 +4,11 @@ import Posts from "../components/Posts/Posts";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor");
+  }
+
   state = {
     posts: [
       { id: "a1", title: "Post 1", content: "This is Post 1" },
@@ -13,6 +18,20 @@ class App extends Component {
     otherState: "Other",
     postsVisibility: false,
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps", props);
+    return state;
+  }
+
+  // Not recommended for use
+  // componentWillMount() {
+  //   console.log("[App.js] componentWillMount");
+  // }
+
+  componentDidMount() {
+    console.log("[App.js] componentDidMount");
+  }
 
   titleChangedHandler = (event, id) => {
     const postIndex = this.state.posts.findIndex((p) => {
@@ -39,6 +58,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js] render");
     let posts = null;
     if (this.state.postsVisibility) {
       posts = (
@@ -55,6 +75,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit
+          title={this.props.appTitle}
           posts={this.state.posts}
           postsVisibility={this.state.postsVisibility}
           clicked={this.togglePostHandler}

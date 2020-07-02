@@ -14,7 +14,7 @@ const cockpit = (props) => {
   }
   return (
     <div>
-      <h1>React Posts!</h1>
+      <h1>{props.title}</h1>
       <p className={pClasses.join(" ")}>List of posts.</p>
       <button className={btnClasses.join(" ")} onClick={props.clicked}>
         Toggle Posts
