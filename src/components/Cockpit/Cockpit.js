@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./Cockpit.module.css";
-const cockpit = (props) => {
+const Cockpit = (props) => {
+  useEffect(
+    () => {
+      console.log("[Cockpit.js] useEffect");
+      // Http request...
+      setTimeout(() => {
+        alert("Saved data to cloud!");
+      }, 1000);
+      return () => {
+        // With no 2nd argument empty arr [] run this function BEFORE removing components
+        console.log("[Cockpit.js] cleanup work in useEffect");
+      };
+    },
+    //Run useEffect when changed props.posts
+    //Empty arr [] run useEffect only when created
+    [props.posts]
+  );
+
+  useEffect(() => {
+    console.log("[Cockpit.js] 2nd useEffect");
+    return () => {
+      // With no 2nd argument run this function BEFORE every main useEffect but A
+      console.log("[Cockpit.js] cleanup work in 2nd useEffect");
+    };
+  });
+
+  // useEffect();
+
   let pClasses = [];
   if (props.posts.length <= 2) {
     pClasses.push(classes.red);
@@ -22,4 +49,4 @@ const cockpit = (props) => {
     </div>
   );
 };
-export default cockpit;
+export default Cockpit;

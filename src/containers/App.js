@@ -17,6 +17,7 @@ class App extends Component {
     ],
     otherState: "Other",
     postsVisibility: false,
+    showCockpit: true,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -83,12 +84,17 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit
-          title={this.props.appTitle}
-          posts={this.state.posts}
-          postsVisibility={this.state.postsVisibility}
-          clicked={this.togglePostHandler}
-        />
+        <button onClick={() => this.setState({ showCockpit: false })}>
+          Remove Cockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            title={this.props.appTitle}
+            posts={this.state.posts}
+            postsVisibility={this.state.postsVisibility}
+            clicked={this.togglePostHandler}
+          />
+        ) : null}
         {posts}
       </div>
     );

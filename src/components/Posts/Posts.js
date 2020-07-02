@@ -32,6 +32,10 @@ class Posts extends Component {
     console.log(snapshot);
   }
 
+  componentWillUnmount() {
+    console.log("[Posts.js] componentWillUnmount");
+  }
+
   render() {
     console.log("[Posts.js] rendering...");
     return this.props.posts.map((post, index) => {
