@@ -14,7 +14,12 @@ class Posts extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log("[Posts.js] shouldComponentUpdate");
-    return true;
+    //Update this component only if the props "posts" change
+    if (nextProps.posts !== this.props.posts) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
