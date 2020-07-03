@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Post from "./Post/Post";
-class Posts extends Component {
+// PureComponent is like shouldComponentUpdate that check all props
+class Posts extends PureComponent {
   // Not recommended with initial state undefined
   // static getDerivedStateFromProps(props, state) {
   //   console.log("[Posts.js] getDerivedStateFromProps");
@@ -12,15 +13,19 @@ class Posts extends Component {
   //   console.log("[Posts.js] componentWillReceiveProps");
   // }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("[Posts.js] shouldComponentUpdate");
-    //Update this component only if the props "posts" change
-    if (nextProps.posts !== this.props.posts) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("[Posts.js] shouldComponentUpdate");
+  //   //Update this component only if the props "posts" change
+  //   if (
+  //     nextProps.posts !== this.props.posts ||
+  //     nextProps.changed !== this.props.changed ||
+  //     nextProps.clicked !== this.props.clicked
+  //   ) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log("[Posts.js] getSnapshotBeforeUpdate");
