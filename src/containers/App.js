@@ -90,7 +90,7 @@ class App extends Component {
         {this.state.showCockpit ? (
           <Cockpit
             title={this.props.appTitle}
-            posts={this.state.posts}
+            postsLength={this.state.posts.length}
             postsVisibility={this.state.postsVisibility}
             clicked={this.togglePostHandler}
           />

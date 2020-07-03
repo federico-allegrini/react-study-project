@@ -15,7 +15,7 @@ const Cockpit = (props) => {
     },
     //Run useEffect when changed props.posts
     //Empty arr [] run useEffect only when created
-    [props.posts]
+    []
   );
 
   useEffect(() => {
@@ -29,10 +29,10 @@ const Cockpit = (props) => {
   // useEffect();
 
   let pClasses = [];
-  if (props.posts.length <= 2) {
+  if (props.postsLength <= 2) {
     pClasses.push(classes.red);
   }
-  if (props.posts.length <= 1) {
+  if (props.postsLength <= 1) {
     pClasses.push(classes.bold);
   }
   let btnClasses = [classes.Button];
@@ -49,4 +49,5 @@ const Cockpit = (props) => {
     </div>
   );
 };
-export default Cockpit;
+// In functional component React.memo() avoid re-rendering of component if props not change
+export default React.memo(Cockpit);
