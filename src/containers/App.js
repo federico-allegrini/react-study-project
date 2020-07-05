@@ -19,6 +19,7 @@ class App extends Component {
     otherState: "Other",
     postsVisibility: false,
     showCockpit: true,
+    changeCounter: 0,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -53,7 +54,13 @@ class App extends Component {
     post.title = event.target.value;
     const posts = [...this.state.posts];
     posts[postIndex] = post;
-    this.setState({ posts: posts });
+    // Updating the state when you depend on old state
+    this.setState((prevState, props) => {
+      return {
+        posts: posts,
+        changeCounter: prevState.changeCounter + 1,
+      };
+    });
   };
 
   togglePostHandler = () => {
