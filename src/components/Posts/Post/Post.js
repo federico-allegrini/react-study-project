@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import withClass from "../../../hoc/withClass";
 import classes from "./Post.module.css";
 class Post extends Component {
@@ -16,4 +17,12 @@ class Post extends Component {
     );
   }
 }
+
+Post.propTypes = {
+  click: PropTypes.func,
+  title: PropTypes.string,
+  content: PropTypes.string,
+  changed: PropTypes.func,
+};
+
 export default withClass(Post, classes.Post);
