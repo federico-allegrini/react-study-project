@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./Cockpit.module.css";
 const Cockpit = (props) => {
+  const toggleBtnRef = useRef(null);
+
   useEffect(
     () => {
       console.log("[Cockpit.js] useEffect");
       // Http request...
-      setTimeout(() => {
-        alert("Saved data to cloud!");
-      }, 1000);
+      toggleBtnRef.current.click();
       return () => {
         // With no 2nd argument empty arr [] run this function BEFORE removing components
         console.log("[Cockpit.js] cleanup work in useEffect");
@@ -43,7 +43,11 @@ const Cockpit = (props) => {
     <div>
       <h1>{props.title}</h1>
       <p className={pClasses.join(" ")}>List of posts.</p>
-      <button className={btnClasses.join(" ")} onClick={props.clicked}>
+      <button
+        ref={toggleBtnRef}
+        className={btnClasses.join(" ")}
+        onClick={props.clicked}
+      >
         Toggle Posts
       </button>
     </div>

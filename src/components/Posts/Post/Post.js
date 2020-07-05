@@ -3,16 +3,34 @@ import PropTypes from "prop-types";
 import withClass from "../../../hoc/withClass";
 import classes from "./Post.module.css";
 class Post extends Component {
+  constructor(props) {
+    super(props);
+    this.h2ElementRef = React.createRef();
+  }
+
+  componentDidMount() {
+    // Click on last h2 element and delete the Post
+    this.h2ElementRef.current.click();
+    // Focus on last input element
+    this.inputElement.focus();
+  }
+
   render() {
     console.log("[Post.js] rendering...");
     return (
       <Fragment>
-        <h2 onClick={this.props.click}>{this.props.title}</h2>
+        <h2 ref={this.h2ElementRef} onClick={this.props.click}>
+          {this.props.title}
+        </h2>
         <p>{this.props.content}</p>
         <p>
           <i>{this.props.children}</i>
         </p>
-        <input onChange={this.props.changed} value={this.props.title}></input>
+        <input
+          ref={(inputEl) => (this.inputElement = inputEl)}
+          onChange={this.props.changed}
+          value={this.props.title}
+        ></input>
       </Fragment>
     );
   }
