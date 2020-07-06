@@ -3,6 +3,7 @@ import classes from "./App.module.css";
 import Posts from "../components/Posts/Posts";
 import Cockpit from "../components/Cockpit/Cockpit";
 import withClass from "../hoc/withClass";
+import AuthContext from "../context/auth-context";
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class App extends Component {
     postsVisibility: false,
     showCockpit: true,
     changeCounter: 0,
+    authenticated: false,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -75,6 +77,10 @@ class App extends Component {
     this.setState({ posts: posts });
   };
 
+  loginHandler = () => {
+    this.setState({ authenticated: true });
+  };
+
   render() {
     console.log("[App.js] render");
     let posts = null;
@@ -85,6 +91,7 @@ class App extends Component {
             posts={this.state.posts}
             clicked={this.deletePostHandler}
             changed={this.titleChangedHandler}
+            // isAuthenticated={this.state.authenticated}
           />
         </div>
       );
@@ -95,15 +102,23 @@ class App extends Component {
         <button onClick={() => this.setState({ showCockpit: false })}>
           Remove Cockpit
         </button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            title={this.props.appTitle}
-            postsLength={this.state.posts.length}
-            postsVisibility={this.state.postsVisibility}
-            clicked={this.togglePostHandler}
-          />
-        ) : null}
-        {posts}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler,
+          }}
+        >
+          {this.state.showCockpit ? (
+            <Cockpit
+              title={this.props.appTitle}
+              postsLength={this.state.posts.length}
+              postsVisibility={this.state.postsVisibility}
+              clicked={this.togglePostHandler}
+              // login={this.loginHandler}
+            />
+          ) : null}
+          {posts}
+        </AuthContext.Provider>
       </Fragment>
     );
   }

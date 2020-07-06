@@ -56,6 +56,7 @@ class Posts extends PureComponent {
           click={() => this.props.clicked(index)}
           changed={(event) => this.props.changed(event, post.id)}
           key={post.id}
+          // isAuth={this.props.isAuthenticated}
         >
           {new Date().toLocaleDateString()}
         </Post>

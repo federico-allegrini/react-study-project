@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withClass from "../../../hoc/withClass";
 import classes from "./Post.module.css";
+import AuthContext from "../../../context/auth-context";
 class Post extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +20,12 @@ class Post extends Component {
     console.log("[Post.js] rendering...");
     return (
       <Fragment>
+        <AuthContext.Consumer>
+          {(context) =>
+            context.authenticated ? <p>Authenticated!</p> : <p>Please log in</p>
+          }
+        </AuthContext.Consumer>
+        {/* {this.props.isAuth ? <p>Authenticated!</p> : <p>Please log in</p>} */}
         <h2 ref={this.h2ElementRef} onClick={this.props.click}>
           {this.props.title}
         </h2>
