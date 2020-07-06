@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import classes from "./App.module.css";
-import Posts from "../components/Posts/Posts";
-import Cockpit from "../components/Cockpit/Cockpit";
+import Posts from "../Posts/Posts";
+import Cockpit from "../Cockpit/Cockpit";
 import withClass from "../hoc/withClass";
 import AuthContext from "../context/auth-context";
 

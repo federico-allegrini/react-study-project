@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import withClass from "../../../hoc/withClass";
+import withClass from "../../hoc/withClass";
 import classes from "./Post.module.css";
-import AuthContext from "../../../context/auth-context";
+import AuthContext from "../../context/auth-context";
 class Post extends Component {
   constructor(props) {
     super(props);
