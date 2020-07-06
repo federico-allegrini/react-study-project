@@ -9,22 +9,26 @@ class Post extends Component {
     this.h2ElementRef = React.createRef();
   }
 
+  static contextType = AuthContext;
+
   componentDidMount() {
     // Click on last h2 element and delete the Post
     this.h2ElementRef.current.click();
     // Focus on last input element
     this.inputElement.focus();
+    // New property
+    console.log("[Post.js] AuthContext: ", this.context);
   }
 
   render() {
     console.log("[Post.js] rendering...");
     return (
       <Fragment>
-        <AuthContext.Consumer>
-          {(context) =>
-            context.authenticated ? <p>Authenticated!</p> : <p>Please log in</p>
-          }
-        </AuthContext.Consumer>
+        {this.context.authenticated ? (
+          <p>Authenticated!</p>
+        ) : (
+          <p>Please log in</p>
+        )}
         {/* {this.props.isAuth ? <p>Authenticated!</p> : <p>Please log in</p>} */}
         <h2 ref={this.h2ElementRef} onClick={this.props.click}>
           {this.props.title}
